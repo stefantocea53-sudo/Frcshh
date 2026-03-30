@@ -2,26 +2,243 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>As-tu 21 ans ou plus ?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avez-vous plus de 21 ans ?</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" as="image" href="assets/freecash-logo.webp" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050a05;
+      --card: #0d1a0e;
+      --border: #1a3a1c;
+      --green: #2cc76e;
+      --green-dark: #25b060;
+      --text: #e8edf3;
+      --muted: #7a9880;
+      --font: -apple-system, "Segoe UI", system-ui, sans-serif;
+    }
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .page {
+      width: 100%;
+      max-width: 420px;
+      padding: 52px 24px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .app-icon {
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      box-shadow: 0 0 32px rgba(44,199,110,0.18);
+    }
+    .app-icon img {
+      width: 76px;
+      height: 76px;
+      object-fit: cover;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(44,199,110,0.12);
+      border: 1.5px solid rgba(44,199,110,0.35);
+      border-radius: 999px;
+      padding: 7px 18px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+    h1 {
+      font-size: clamp(32px, 9vw, 44px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    h1 .accent { color: var(--green); }
+    .subtext {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+    .info-card {
+      width: 100%;
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 18px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+    .info-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    .info-label-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-row-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: rgba(44,199,110,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .info-row-icon svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .info-row-text {
+      font-size: 13.5px;
+      color: #b8cbbf;
+      line-height: 1.55;
+    }
+    .info-row-text strong { color: #ffffff; font-weight: 700; }
+    .btn-yes {
+      display: block;
+      width: 100%;
+      background: var(--green);
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: background 0.15s, transform 0.1s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-yes:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .btn-yes:active { transform: translateY(0); background: var(--green-dark); }
+    .btn-no {
+      display: block;
+      width: 100%;
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid #1f3522;
+      border-radius: 14px;
+      padding: 15px 24px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-no:hover { border-color: #2a4a2e; color: #9ab09e; }
+  </style>
 </head>
 <body>
+<div class="page">
 
-<h1>AS-TU 21+ ?</h1>
+  <div class="app-icon">
+    <img src="assets/freecash-logo.webp" alt="FreeCash" fetchpriority="high" />
+  </div>
 
-<p>Transforme ton temps de défilement en argent réel.</p>
+  <div class="badge">
+    <span class="badge-dot"></span>
+    Offre vidéos à scroller
+  </div>
 
-<h3>Important – veuillez lire</h3>
+  <h1>AVEZ-VOUS <span class="accent">21+</span> ANS ?</h1>
+  <p class="subtext">Transformez votre temps de défilement en argent réel.</p>
 
-<p>
-Vous devez avoir au moins <b>21 ans</b> lors de l’inscription pour débloquer l’offre de défilement de vidéos.
-</p>
+  <div class="info-card">
+    <div class="info-label">
+      <span class="info-label-dot"></span>
+      Important – veuillez lire
+    </div>
+    <div class="info-row">
+      <div class="info-row-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+      </div>
+      <div class="info-row-text">
+        Vous devez avoir <strong>au moins 21 ans</strong> lors de votre inscription pour débloquer l'offre de vidéos à scroller
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-row-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+      </div>
+      <div class="info-row-text">
+        Vous avez déjà l'application ? <strong>Créez un nouveau compte via cette page</strong> – les comptes existants ne sont pas éligibles
+      </div>
+    </div>
+  </div>
 
-<p>
-Vous avez déjà l’application ? <b>Créez un nouveau compte via cette page</b> – les comptes existants ne sont pas éligibles.
-</p>
+  <a href="index.html" class="btn-yes" id="btn-yes">Oui, j'ai 21 ans ou plus</a>
+  <a href="blocked.html" class="btn-no" id="btn-no">Non, j'ai moins de 21 ans</a>
 
-<a href="index.html">Oui, j’ai 21 ans ou plus</a><br><br>
-<a href="blocked.html">Non, j’ai moins de 21 ans</a>
-
+</div>
+<script>
+(function(){
+  var qs = window.location.search;
+  if(qs){
+    document.getElementById('btn-yes').href = 'index.html' + qs;
+    document.getElementById('btn-no').href = 'blocked.html' + qs;
+  }
+})();
+</script>
 </body>
 </html>
